@@ -1,0 +1,231 @@
+-- MySQL dump 10.13  Distrib 5.7.29, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: library
+-- ------------------------------------------------------
+-- Server version	11.2.2-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `activitylog`
+--
+
+DROP TABLE IF EXISTS `activitylog`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `activitylog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usersId` int(11) NOT NULL,
+  `loanLoggId` int(11) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `activityDate` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `loanLoggId` (`loanLoggId`),
+  KEY `activitylog_ibfk_1` (`usersId`),
+  CONSTRAINT `activitylog_ibfk_1` FOREIGN KEY (`usersId`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `activitylog_ibfk_2` FOREIGN KEY (`loanLoggId`) REFERENCES `loanlogg` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `activitylog`
+--
+
+LOCK TABLES `activitylog` WRITE;
+/*!40000 ALTER TABLE `activitylog` DISABLE KEYS */;
+INSERT INTO `activitylog` VALUES (1,16,NULL,'Användaren shazia@gmail.com lades till','2024-01-18 13:14:40'),(2,16,NULL,'Användaren shazia@gmail.com loggade in','2024-01-18 13:17:21'),(3,1,NULL,'Användaren niko@gmail.com returnerade vouge','2024-01-18 13:22:30'),(4,5,NULL,'Användaren joel@gmail.com lånade vouge','2024-01-18 13:58:16'),(5,6,NULL,'Användaren martin@gmail.com lånade Harry Potter och fången från Azkaban','2024-01-18 14:32:11'),(6,1,NULL,'Användaren niko@gmail.com uppdaterade sitt namn till Nikolina Vikberg','2024-01-18 15:02:24'),(7,1,NULL,'Användaren niko@gmail.com bytte lösenord','2024-01-18 15:13:12'),(8,2,NULL,'Användaren rosie@gmail.com bytte lösenord','2024-01-18 15:13:49'),(9,3,NULL,'Användaren mashie@gmail.com bytte lösenord','2024-01-18 15:14:04'),(10,4,NULL,'Användaren sam@gmail.com bytte lösenord','2024-01-18 15:14:23'),(11,5,NULL,'Användaren joel@gmail.com bytte lösenord','2024-01-18 15:14:31'),(12,6,NULL,'Användaren martin@gmail.com bytte lösenord','2024-01-18 15:14:39'),(13,17,NULL,'Användaren sami@gmail.com lades till','2024-01-18 15:23:36'),(14,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 06:48:57'),(15,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 07:09:49'),(16,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 07:15:01'),(17,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 07:15:36'),(18,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 07:16:30'),(19,18,NULL,'Användaren kaio@gmail.com lades till','2024-01-19 07:18:10'),(20,18,NULL,'Användaren kaio@gmail.com lånade bergens stjärnor','2024-01-19 07:20:34'),(21,6,NULL,'Användaren martin@gmail.com uppdaterade sitt namn till Martin','2024-01-19 07:26:57'),(22,1,NULL,'Användaren niko@gmail.com bytte lösenord','2024-01-19 07:27:48'),(23,3,NULL,'Användaren mashie@gmail.com lånade bergens stjärnor','2024-01-19 08:43:30'),(24,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 08:48:45'),(25,19,NULL,'Användaren kalle@gmail.com lades till','2024-01-19 08:49:09'),(26,19,NULL,'Användaren kalle@gmail.com bytte lösenord','2024-01-19 08:49:43'),(27,19,NULL,'Användaren kalle@gmail.com lånade bergens stjärnor','2024-01-19 08:50:29'),(28,19,NULL,'Användaren kalle@gmail.com returnerade bergens stjärnor','2024-01-19 08:50:52'),(29,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 09:41:18'),(30,20,NULL,'Användaren geta@gmail.com lades till','2024-01-19 09:41:46'),(31,20,NULL,'Användaren geta@gmail.com lånade bergens stjärnor','2024-01-19 09:42:25'),(44,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 16:38:45'),(45,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 16:39:54'),(47,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 16:59:20'),(48,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 17:00:10'),(50,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 17:18:23'),(51,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 17:20:32'),(52,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-19 17:23:28'),(54,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-21 09:53:14'),(55,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-21 09:54:52'),(56,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-21 09:55:55'),(57,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-21 09:56:37'),(58,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-21 09:57:45'),(59,1,NULL,'Användaren niko@gmail.com bytte lösenord','2024-01-21 09:58:05'),(60,1,NULL,'Användaren niko@gmail.com uppdaterade sitt namn till nikolina','2024-01-21 09:58:24'),(61,1,NULL,'Användaren niko@gmail.com lånade elle','2024-01-21 09:58:59'),(62,1,NULL,'Användaren niko@gmail.com lånade bergens stjärnor','2024-01-21 09:59:19'),(63,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-21 17:48:57'),(65,2,NULL,'Användaren rosie@gmail.com loggade in','2024-01-21 17:52:28'),(66,11,NULL,'Användaren sofia@gmail.com loggade in','2024-01-21 18:03:40'),(67,11,NULL,'Användaren sofia@gmail.com loggade in','2024-01-21 18:08:00'),(68,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-23 15:15:49'),(69,1,NULL,'Användaren niko@gmail.com lånade bergens stjärnor','2024-01-23 15:17:12'),(70,1,NULL,'Användaren niko@gmail.com lånade bergens stjärnor','2024-01-23 15:17:39'),(71,1,NULL,'Användaren niko@gmail.com lånade bergens stjärnor','2024-01-23 15:18:32'),(72,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-23 15:25:33'),(73,1,NULL,'Användaren niko@gmail.com lånade dit floden för dig','2024-01-23 15:26:28'),(74,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-23 15:42:23'),(75,1,NULL,'Användaren niko@gmail.com returnerade bergens stjärnor','2024-01-23 15:42:56'),(76,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-23 18:30:26'),(77,1,NULL,'Användaren niko@gmail.com lånade bergens stjärnor','2024-01-23 18:31:26'),(78,1,NULL,'Användaren niko@gmail.com returnerade dit floden för dig','2024-01-23 18:32:41'),(79,1,NULL,'Användaren niko@gmail.com bytte lösenord','2024-01-23 18:35:25'),(115,30,NULL,'Användaren lok lades till','2024-01-26 05:27:26'),(116,30,NULL,'Användaren lok uppdaterade sitt namn till lovisa','2024-01-26 05:27:56'),(117,30,NULL,'Användaren lok uppdaterade sitt namn till lovisa','2024-01-26 05:28:08'),(118,30,NULL,'Användaren lovisa@gmail.com bytte email från lok till lovisa@gmail.com','2024-01-26 05:28:22'),(151,33,NULL,'Användaren luka@gmail.com lades till','2024-01-26 07:04:15'),(152,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-26 08:47:57'),(153,1,NULL,'Användaren niko@gmail.com returnerade bergens stjärnor','2024-01-26 08:48:09'),(154,1,NULL,'Användaren niko@gmail.com loggade in','2024-01-26 08:51:34'),(155,1,NULL,'Användaren niko@gmail.com returnerade bergens stjärnor','2024-01-26 08:51:43'),(156,1,NULL,'Användaren niko@gmail.com returnerade bergens stjärnor','2024-01-26 08:51:51'),(157,1,NULL,'Användaren niko@gmail.com returnerade bergens stjärnor','2024-01-26 08:51:57'),(158,1,NULL,'Användaren niko@gmail.com returnerade bergens stjärnor','2024-01-26 08:52:13'),(159,1,NULL,'Användaren niko@gmail.com returnerade bergens stjärnor','2024-01-26 08:52:20'),(160,20,NULL,'Användaren geta@gmail.com loggade in','2024-01-26 09:00:50'),(161,20,NULL,'Användaren geta@gmail.com returnerade bergens stjärnor','2024-01-26 09:01:18'),(162,3,NULL,'Användaren mashie@gmail.com loggade in','2024-01-26 09:01:30'),(163,3,NULL,'Användaren mashie@gmail.com returnerade bergens stjärnor','2024-01-26 09:01:44'),(164,3,NULL,'Användaren mashie@gmail.com returnerade bergens stjärnor','2024-01-26 09:01:53'),(165,3,NULL,'Användaren mashie@gmail.com returnerade bergens stjärnor','2024-01-26 09:02:02'),(166,18,NULL,'Användaren kaio@gmail.com loggade in','2024-01-26 09:02:39'),(167,18,NULL,'Användaren kaio@gmail.com returnerade bergens stjärnor','2024-01-26 09:02:48'),(168,18,NULL,'Användaren kaio@gmail.com returnerade bergens stjärnor','2024-01-26 09:02:55'),(169,11,NULL,'Användaren sofia@gmail.com loggade in','2024-01-26 09:30:20'),(170,11,NULL,'Användaren sofia@gmail.com returnerade Harry Potter och de visas sten','2024-01-26 09:30:41'),(171,11,NULL,'Användaren sofia@gmail.com returnerade Harry Potter och de visas sten','2024-01-26 09:30:55'),(172,11,NULL,'Användaren sofia@gmail.com loggade in','2024-01-26 09:31:51'),(173,11,NULL,'Användaren sofia@gmail.com lånade Harry Potter och de visas sten','2024-01-26 09:32:02'),(174,11,NULL,'Användaren sofia@gmail.com returnerade Harry Potter och de visas sten','2024-01-26 09:32:17'),(175,11,NULL,'Användaren sofia@gmail.com loggade in','2024-01-26 09:47:42'),(176,11,NULL,'Användaren sofia@gmail.com lånade hus och hem','2024-01-26 09:49:03'),(177,11,NULL,'Användaren sofia@gmail.com returnerade hus och hem','2024-01-26 09:49:16'),(178,11,NULL,'Användaren sofia@gmail.com returnerade hus och hem','2024-01-26 09:49:29'),(179,11,NULL,'Användaren sofia@gmail.com loggade in','2024-01-26 10:11:49'),(180,11,NULL,'Användaren sofia@gmail.com loggade in','2024-01-26 10:13:46'),(181,11,NULL,'Användaren sofia@gmail.com lånade elle','2024-01-26 10:13:53'),(182,11,NULL,'Användaren sofia@gmail.com returnerade elle','2024-01-26 10:14:11'),(183,11,NULL,'Användaren sofia@gmail.com loggade in','2024-01-26 10:15:59'),(184,11,NULL,'Användaren sofia@gmail.com lånade elle','2024-01-26 10:16:10'),(185,11,NULL,'Användaren sofia@gmail.com loggade in','2024-01-26 10:17:01'),(189,30,NULL,'Användaren lovisa@gmail.com loggade in','2024-01-26 13:07:14'),(190,30,NULL,'Användaren lovisa@gmail.com lånade bergens stjärnor','2024-01-26 13:07:55');
+/*!40000 ALTER TABLE `activitylog` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `authors`
+--
+
+DROP TABLE IF EXISTS `authors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `authors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lastname` varchar(50) NOT NULL,
+  `firstname` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `authors`
+--
+
+LOCK TABLES `authors` WRITE;
+/*!40000 ALTER TABLE `authors` DISABLE KEYS */;
+INSERT INTO `authors` VALUES (1,'Rowling','J.K'),(2,'Colgan','Jenny'),(3,'Owens','Delia'),(4,'Read','Shelley'),(5,'Moyes','Jojo');
+/*!40000 ALTER TABLE `authors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `book_author`
+--
+
+DROP TABLE IF EXISTS `book_author`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `book_author` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `authorsId` int(11) NOT NULL,
+  `booksId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `authorsId` (`authorsId`),
+  KEY `booksId` (`booksId`),
+  CONSTRAINT `book_author_ibfk_1` FOREIGN KEY (`authorsId`) REFERENCES `authors` (`id`),
+  CONSTRAINT `book_author_ibfk_2` FOREIGN KEY (`booksId`) REFERENCES `books` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `book_author`
+--
+
+LOCK TABLES `book_author` WRITE;
+/*!40000 ALTER TABLE `book_author` DISABLE KEYS */;
+INSERT INTO `book_author` VALUES (1,1,1),(2,1,2),(3,1,3),(4,1,4),(5,1,5),(6,1,6),(7,1,7),(8,2,8),(9,2,9),(10,2,9),(11,2,10),(12,2,10),(13,2,11),(14,2,12),(15,2,13),(16,2,13),(17,3,15),(18,2,14),(19,4,16),(20,5,17);
+/*!40000 ALTER TABLE `book_author` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `books`
+--
+
+DROP TABLE IF EXISTS `books`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `books` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL,
+  `yearPublished` date DEFAULT NULL,
+  `status` enum('Available','Not Available') NOT NULL DEFAULT 'Available',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `books`
+--
+
+LOCK TABLES `books` WRITE;
+/*!40000 ALTER TABLE `books` DISABLE KEYS */;
+INSERT INTO `books` VALUES (1,'Harry Potter och de visas sten','2005-01-01','Available'),(2,'Harry Potter och hemlighetens kammare','2002-01-01','Available'),(3,'Harry Potter och fången från Azkaban','2003-01-01','Available'),(4,'Harry Potter och den flammande bägaren','2004-01-01','Not Available'),(5,'Harry Potter och fenix ordern','2005-01-01','Available'),(6,'Harry Potter och halvblodsprinsen','2006-01-01','Available'),(7,'Harry Potter och halvblodsprinsen','2007-01-01','Available'),(8,'Kärlek på den lilla ön i havet','2008-01-01','Available'),(9,'Sommar på den lilla ön i havet','2009-01-01','Available'),(10,'Julafton på den lilla ön i havet','2010-01-01','Available'),(11,'Det lilla bageriet på strandpromenaden','2011-01-01','Available'),(12,'Sommar i det lilla bageriet på strandpromenaden','2012-01-01','Available'),(13,'Jul i det lilla bageriet på strandpromenaden','2013-01-01','Not Available'),(14,'Soluppgång över strandpromenaden','2014-01-01','Available'),(15,'Där kräftorna sjunger','2015-01-01','Available'),(16,'Dit floden för dig','2016-01-01','Not Available'),(17,'Bergens stjärnor','2016-01-01','Not Available');
+/*!40000 ALTER TABLE `books` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `loanlogg`
+--
+
+DROP TABLE IF EXISTS `loanlogg`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `loanlogg` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usersId` int(11) NOT NULL,
+  `book_authorId` int(11) DEFAULT NULL,
+  `endDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `returned` tinyint(1) DEFAULT NULL,
+  `magazinesId` int(11) DEFAULT NULL,
+  `startDate` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `book_authorId` (`book_authorId`),
+  KEY `magazinesId` (`magazinesId`),
+  KEY `loanlogg_ibfk_1` (`usersId`),
+  CONSTRAINT `loanlogg_ibfk_1` FOREIGN KEY (`usersId`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `loanlogg_ibfk_2` FOREIGN KEY (`book_authorId`) REFERENCES `book_author` (`id`),
+  CONSTRAINT `loanlogg_ibfk_3` FOREIGN KEY (`magazinesId`) REFERENCES `magazines` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `loanlogg`
+--
+
+LOCK TABLES `loanlogg` WRITE;
+/*!40000 ALTER TABLE `loanlogg` DISABLE KEYS */;
+INSERT INTO `loanlogg` VALUES (1,11,20,'2024-01-17 21:32:05',1,NULL,'2024-01-17 16:35:01'),(2,11,1,'2024-01-17 21:52:16',1,NULL,'2024-01-17 21:52:16'),(3,11,19,'2024-02-16 21:56:44',1,NULL,'2024-01-17 21:56:44'),(4,11,NULL,'2024-01-27 22:53:06',1,2,'2024-01-17 22:53:06'),(5,1,NULL,'2024-01-28 07:50:06',1,3,'2024-01-18 07:50:06'),(6,5,NULL,'2024-01-28 07:52:04',NULL,5,'2024-01-18 07:52:04'),(7,11,20,'2024-02-17 07:56:15',1,NULL,'2024-01-18 07:56:15'),(8,2,NULL,'2024-01-28 10:24:31',NULL,2,'2024-01-18 10:24:31'),(9,5,NULL,'2024-01-28 13:58:16',NULL,3,'2024-01-18 13:58:16'),(10,6,3,'2024-02-17 14:32:11',NULL,NULL,'2024-01-18 14:32:11'),(11,18,20,'2024-02-18 07:20:34',1,NULL,'2024-01-19 07:20:34'),(12,3,20,'2024-02-18 08:43:30',1,NULL,'2024-01-19 08:43:30'),(13,19,20,'2024-02-18 08:50:29',1,NULL,'2024-01-19 08:50:29'),(14,20,20,'2024-02-18 09:42:25',1,NULL,'2024-01-19 09:42:25'),(18,1,NULL,'2024-01-31 09:58:59',NULL,2,'2024-01-21 09:58:59'),(19,1,20,'2024-02-20 09:59:19',1,NULL,'2024-01-21 09:59:19'),(20,1,20,'2024-02-22 15:17:12',1,NULL,'2024-01-23 15:17:12'),(21,1,20,'2024-02-22 15:17:39',1,NULL,'2024-01-23 15:17:39'),(22,1,20,'2024-02-22 15:18:32',1,NULL,'2024-01-23 15:18:32'),(23,1,19,'2024-02-22 15:26:28',1,NULL,'2024-01-23 15:26:28'),(24,1,20,'2024-02-22 18:31:26',1,NULL,'2024-01-23 18:31:26'),(34,11,1,'2024-02-25 09:32:02',1,NULL,'2024-01-26 09:32:02'),(35,11,NULL,'2024-02-05 09:49:03',1,4,'2024-01-26 09:49:03'),(36,11,NULL,'2024-02-05 10:13:53',1,2,'2024-01-26 10:13:53'),(37,11,NULL,'2024-02-05 10:16:10',NULL,2,'2024-01-26 10:16:10'),(38,30,20,'2024-02-25 13:07:55',NULL,NULL,'2024-01-26 13:07:55');
+/*!40000 ALTER TABLE `loanlogg` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `magazines`
+--
+
+DROP TABLE IF EXISTS `magazines`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `magazines` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `datePublished` date DEFAULT NULL,
+  `status` enum('Available','Not Available') NOT NULL DEFAULT 'Available',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `magazines`
+--
+
+LOCK TABLES `magazines` WRITE;
+/*!40000 ALTER TABLE `magazines` DISABLE KEYS */;
+INSERT INTO `magazines` VALUES (1,'Gård och Torp','2024-01-01','Available'),(2,'Elle','2023-01-10','Not Available'),(3,'Vouge','2023-08-01','Available'),(4,'Hus och Hem','2024-01-01','Available'),(5,'Playboy','2000-06-06','Available');
+/*!40000 ALTER TABLE `magazines` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `lastLogin` datetime DEFAULT current_timestamp(),
+  `hashed_password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'nikolina','niko@gmail.com','2024-01-26 08:51:34','cf12eceb3ad746a4e4fe4fd17da28f86b88b25b5fea6cbfc8785d2fcd1b9d799b7eefe05a99dbcd997285ad636394ab8'),(2,'Rositsa','rosie@gmail.com','2024-01-21 17:52:28','d50e5eaf2e566cfaea5658b39a7dd28840c54650b3a6c97b3394e2fb1525c0cf4ec57f9b21b659293625d49cca6a8d22'),(3,'Mashreka','mashie@gmail.com','2024-01-26 09:01:30','87864f8f17b394c99e1cdbaa17ee41b3fc56bbb11af5286d59116dfc9d5a2ae14ebff2e3663bf5e77c5282f7e56ebd5c'),(4,'Sam','sam@gmail.com',NULL,'d760d23c3bebd64300d3e027b332303a09af68785686bfbbd504297829847a21d189c376ba1fe21f9cd0f91ecfa719ff'),(5,'Joel','joel@gmail.com',NULL,'9722c1c4053133745b8825476f5c9b705ce8a82353744ebbf14741fea26747ce5fb8cb0c5e15dd74ed52962932dd0e8e'),(6,'Martin','martin@gmail.com',NULL,'cd27f64e99e4f868baf9258a1f5297995150848f91a894ab26409332a363ce28d5d6a5e049f3779acd447ff0cbbd3be3'),(11,'sofia','sofia@gmail.com','2024-01-26 10:17:01','06653e0eda10eb8a00d046ed7b60b74c2674932ebb839e59fb2575c61121921cd9e7e99bad8319eb2e673132e76073fc'),(13,'Andreas','andreas@gmail.com','2024-01-18 13:06:45','eb485b11f972706eb8e341e98eb2cb6f979e02125362a0922c7796a85a33ae3ed73ac88b7a1ad8447af2f31728bce46b'),(14,'neil','neil@gmail.com','2024-01-18 13:07:41','ddc1c518d52db5fced7c99794e677813614ed20f57d8527e9718d84cdeea8c1b51ee076700d3fde343aa55d02e0ae3e8'),(15,'emma','emma@gmail.com','2024-01-18 13:08:26','668dbda28334437021df6c4ed1d1decd5e0190f5a2c1bfaa76624b53bf6b978a45939aa33a3a425490fe0d8fc31310b2'),(16,'Shazia','shazia@gmail.com','2024-01-18 13:17:21','a7ec3c6a1ea596062f11208606829f601a04dedd01cedce5eb2b81729a85787af76e6b289a9cd9ebf7a7ae2f04fba3f6'),(17,'sami','sami@gmail.com','2024-01-18 15:23:36','ff4b9bed47baa00ee56a1a693b38b5c35204a153392615f27acffad5f4ade4726c21535ab931e627743499896346cadb'),(18,'Kaio','kaio@gmail.com','2024-01-26 09:02:39','870a483786e55f93c5b4da105dc86487c74b5680a93cd7511e3355fa2b003b36f6cde3957d2fae8be45d77227a23e6bd'),(19,'kalle','kalle@gmail.com','2024-01-19 08:49:09','8b6aaf7ff664aa869bd461c58ec0f1c444dbc88677813ec959024e29072120bcb6b588d05385546f99eb0f5507b2c787'),(20,'geta','geta@gmail.com','2024-01-26 09:00:50','29e131d2b35c1765e092cd4b5d83f9a1919fa5f55ddad8297937fc7f586c462006c95e2f690c039ffbafc424894af146'),(30,'lovisa','lovisa@gmail.com','2024-01-26 13:07:14','0fe1352f8f18c80fa79e50448b9909e2ee57051fa1210b76a5400d7c78180c39ab7028d288ef90b3799877964a74ae12'),(33,'luka','luka@gmail.com','2024-01-26 07:04:15','8d398659310592b8225d4e018ef2a9f2ae427e1a1fcca3ed837019a72c82fe11f5f5f763afd9efd42f57ae0bcf7be996');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'library'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-01-26 14:24:54

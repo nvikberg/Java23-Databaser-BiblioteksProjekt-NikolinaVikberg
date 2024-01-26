@@ -1,0 +1,227 @@
+USE library;
+
+CREATE TABLE IF NOT EXISTS
+users
+(id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+name VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL UNIQUE
+);
+
+INSERT INTO
+users
+(name, email)
+VALUES
+('mashreka', 'mashie@gmail.com'
+);
+
+
+CREATE TABLE IF NOT EXISTS
+loanLogg
+(id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+usersId INT NOT NULL,
+book_authorId INT NOT NULL,
+dateOut DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+dateReturned DATETIME NOT NULL,
+FOREIGN KEY (usersId) REFERENCES users(id),
+FOREIGN KEY (book_authorId) REFERENCES book_author(id)
+);
+
+
+CREATE TABLE IF NOT EXISTS
+book_author
+(id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+authorsId INT NOT NULL,
+booksId INT NOT NULL,
+FOREIGN KEY (authorsId) REFERENCES authors(id),
+FOREIGN KEY (booksId) REFERENCES books(id)
+);
+
+CREATE TABLE IF NOT EXISTS
+magazines
+(id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+name VARCHAR(255) NOT NULL,
+datePublished VARCHAR(255) NOT NULL
+);
+
+
+DESCRIBE books;
+
+ALTER TABLE
+books
+MODIFY COLUMN id
+INT AUTO_INCREMENT;
+
+ALTER TABLE
+books
+ADD COLUMN yearPublished
+DATE;
+
+ALTER TABLE
+magazines
+ADD COLUMN datePublished DATE;
+
+ALTER TABLE
+loanLogg
+ADD FOREIGN KEY (magazinesId) REFERENCES magazines(id);
+
+
+DESCRIBE magazines;
+
+INSERT INTO authors
+(lastname, firstname)
+VALUES
+('Moyes', 'Jojo');
+
+INSERT INTO books
+(title)
+VALUES
+('');
+
+INSERT INTO magazines
+(name, datePublished)
+VALUES
+('', 2024-01-06);
+
+UPDATE magazines
+SET datePublished = '2024-01-01' WHERE name = 'Gård och Torp';
+
+
+ALTER TABLE loanlogg
+RENAME COLUMN dateOut TO endDate;
+
+ALTER TABLE loanlogg
+MODIFY COLUMN returned
+boolean;
+
+
+INSERT INTO book_author
+(authorsid, booksId)
+VALUES
+(5,17);
+
+DESCRIBE users;
+
+DESCRIBE loanlogg;
+
+ALTER TABLE users MODIFY COLUMN hashed_password VARCHAR(255);
+
+ALTER TABLE loanlogg MODIFY COLUMN book_authorId INT NULL;
+
+
+SELECT id FROM users WHERE email = "sofia@gmail.com";
+SELECT id FROM books WHERE title = "bergens stjärnor";
+SELECT id FROM book_author WHERE booksId = 17;
+
+INSERT INTO loanlogg SET usersid, book_authorId;
+
+SELECT name, datePublished FROM magazines;
+
+DROP TABLE activityLog;
+
+CREATE TABLE IF NOT EXISTS activityLog
+(id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+usersId INT NOT NULL,
+loanLoggId INT,
+message TEXT,
+FOREIGN KEY (usersId) REFERENCES users(id),
+FOREIGN KEY (loanLoggId) REFERENCES loanlogg(id)
+);
+
+
+ALTER TABLE loanlogg
+DROP COLUMN available;
+
+
+RENAME TABLE acitivityLog TO activityLog;
+
+SELECT * FROM loanlogg ORDER BY endDate DESC;
+
+SELECT * FROM loanlogg WHERE usersid = ?;
+
+SELECT name FROM users WHERE email = 'niko@gmail.com';
+
+UPDATE Users SET hashed_password = 'nikolina' WHERE email = 'niko@gmail.com';
+
+UPDATE books SET yearPublished = '2016-02-11' WHERE id = 18;
+
+DESCRIBE books;
+
+CREATE TABLE IF NOT EXISTS
+DVD
+(id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+name VARCHAR(255) NOT NULL,
+yearReleased DATE NOT NULL
+);
+
+ALTER TABLE dvd
+ADD COLUMN storyline
+TEXT;
+
+ALTER TABLE
+loanlogg
+DROP dvdId;
+
+DESCRIBE loanlogg;
+
+ALTER TABLE magazines
+ADD COLUMN status
+ENUM("Available", "Not Available") NOT NULL DEFAULT "Available";
+
+
+UPDATE books SET status = "Not Available" WHERE title = "bergens stjärnor";
+UPDATE books SET status = "Available" WHERE title = "bergens stjärnor";
+
+
+UPDATE magazines SET status = "Not Available" WHERE name = "elle";
+UPDATE magazines SET status = "Available" WHERE name = "elle";
+
+
+SELECT status FROM books WHERE title = "bergens stjärnor"; 
+SELECT status FROM magazines WHERE name = "elle"; 
+
+SELECT l.startDate, l.endDate, b.title AS item, 'book' AS type 
+FROM loanlogg l 
+JOIN users u ON l.usersid = u.id
+JOIN book_author ba ON l.book_authorid = ba.id
+JOIN books b ON ba.booksid = b.id
+WHERE u.email = 'niko@gmail.com' 
+UNION
+SELECT l.startDate, l.endDate, m.name AS item, 'magazine' AS type 
+FROM loanlogg l 
+JOIN users u ON l.usersid = u.id
+JOIN magazines m ON l.magazinesId = m.id
+WHERE u.email = 'niko@gmail.com' 
+ORDER BY startDate DESC;
+
+DESCRIBE activitylog;
+
+SHOW CREATE TABLE activitylog;
+
+
+ALTER TABLE activitylog
+FOREIGN KEY (usersId) REFERENCES users(id)
+ON DELETE SET NULL;
+
+ALTER TABLE activitylog
+ADD CONSTRAINT activitylog_ibfk_1
+FOREIGN KEY (usersId) REFERENCES users(id)
+ON DELETE CASCADE;
+
+
+SHOW CREATE TABLE loanlogg;
+
+ALTER TABLE loanlogg
+DROP FOREIGN KEY loanlogg_ibfk_1;
+
+ALTER TABLE loanlogg
+ADD CONSTRAINT loanlogg_ibfk_1
+FOREIGN KEY (usersId)
+REFERENCES users(id)
+ON DELETE CASCADE;
+
+SELECT u.email, b.title
+FROM users u
+JOIN loanlogg l ON u.id = l.usersId
+JOIN book_author ba ON l.book_authorId = ba.id
+JOIN books b ON ba.booksid = b.id
+WHERE returned IS NULL;
